@@ -47,6 +47,12 @@ let arr = [1, 2, 2, 3, 4, 4, 5];
 
 // use 2 pointer
 
+//explain - use 2 pointer
+// step 1 - use 2 pointer x and i
+// step 2 - if nums[i] !== nums[x], then nums[x] = nums[i] and ++x
+// step 3 - fill the remaining elements with "_"
+// step 4 - return x + 1
+
 function removeDuplicates(nums) {
   let x = 0;
   for (let i = 1; i < nums.length; i++) {
