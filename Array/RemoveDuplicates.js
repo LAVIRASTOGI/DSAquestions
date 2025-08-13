@@ -55,6 +55,8 @@ function removeDuplicates(nums) {
       nums[x] = nums[i];
     }
   }
+
+  nums.fill("_", x + 1);
   console.log(nums);
   return x + 1;
 }
