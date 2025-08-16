@@ -1,53 +1,88 @@
-// Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+// Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+// You must implement a solution with a linear runtime complexity and use only constant extra space.
 
 // Example 1:
 
-// Input: nums = [3,0,1]
+// Input: nums = [2,2,1]
 
-// Output: 2
-
-// Explanation:
-
-// n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+// Output: 1
 
 // Example 2:
 
-// Input: nums = [0,1]
+// Input: nums = [4,1,2,1,2]
 
-// Output: 2
-
-// Explanation:
-
-// n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
+// Output: 4
 
 // Example 3:
 
-// Input: nums = [9,6,4,2,3,5,7,0,1]
+// Input: nums = [1]
 
-// Output: 8
+// Output: 1
 
-// Explanation:
+// Constraints:
 
-// n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
+// 1 <= nums.length <= 3 * 104
+// -3 * 104 <= nums[i] <= 3 * 104
+// Each element in the array appears twice except for one element which appears only once.
 
-// brute force
-// var missingNumber = function (nums) {
-//   for (let i = 0; i <= nums.length; i++) {
-//     if (!nums.includes(i)) {
-//       return i;
-//     }
-//   }
-// };
+// in this question we are using bitwise XOR to find the single number
+// bitwise XOR is a binary operation that takes two bits and returns 1 if the bits are different and 0 if the bits are the same
+// 0 ^ 0 = 0
+// 0 ^ 1 = 1
+// 1 ^ 0 = 1
+// 1 ^ 1 = 0
 
-// console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]));
+// here Each element in the array appears twice except for one element which appears only once.
+// so when we xor all the numbers in the array, the numbers that appear
+//  twice will cancel out and we will be left with the single number
 
-function missingNumber(nums) {
-  let totalSum = (nums.length * (nums.length + 1)) / 2;
-  let sum = 0;
+// explaination
+// step 1 - we are using a for loop to iterate through the array
+// step 2 - we are using a bitwise XOR to find the single number
+// step 3 - we are returning the result
+
+// time complexity - O(n)
+// space complexity - O(1)
+function singleNumber(nums) {
+  let result = 0;
   for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
+    // bitwise XOR -with same number it will give 0
+
+    // 0 ^ 0 = 0
+    // 0 ^ 1 = 1
+    // 1 ^ 0 = 1
+    // 1 ^ 1 = 0
+    // 1 ^ 1 ^ 1 = 1
+    // 1 ^ 1 ^ 1 ^ 1 = 0
+    result = result ^ nums[i];
+    console.log(result);
   }
-  return totalSum - sum;
+  return result;
 }
 
-console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]));
+// next way to solve this question - using object - easy to understand
+// we are using a for loop to iterate through the array
+// we are using an if statement to check if the number is in the object
+// if it is, we are incrementing the value of the number
+// if it is not, we are adding the number to the object with the value 1
+// finally, we are returning the single number
+
+// time complexity - O(n)
+// space complexity - O(n)
+function singleNumber2(nums) {
+  let obj = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (obj[nums[i]]) {
+      obj[nums[i]]++;
+    } else {
+      obj[nums[i]] = 1;
+    }
+  }
+  for (let key in obj) {
+    if (obj[key] === 1) {
+      return Number(key);
+    }
+  }
+}
+console.log(singleNumber([4, 1, 2, 1, 2]));
