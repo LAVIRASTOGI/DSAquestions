@@ -25,6 +25,13 @@
 
 // 1 <= n <= 231 - 1
 
+// explanation:
+// we use a set to store the numbers we have seen so far
+// we use a while loop to keep track of the number we are currently on
+// we use a function to calculate the sum of the squares of the digits of the number
+// we use a function to check if the number is a happy number
+// we return true if the number is a happy number, false otherwise
+
 function sumOfSquares(n) {
   let sum = 0;
   while (n > 0) {
