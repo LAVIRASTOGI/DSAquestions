@@ -43,7 +43,14 @@ function sumOfSquares(n) {
 }
 
 function isHappy(n) {
+  // set checks for infinite loop
+  // if the number is not 1 and we have seen it before, we return false
+  // if the number is 1, we return true
+  // if the number is not 1 and we have not seen it before, we add it to the set and continue
+  // if the number is 1, we return true
+
   const seen = new Set();
+
   while (n !== 1 && !seen.has(n)) {
     seen.add(n);
     n = sumOfSquares(n);
