@@ -24,20 +24,15 @@
  * @return {number}
  */
 var maxDepth = function (root) {
-  let maxLevel = 0;
+    if(!root) return 0
+     let maxLevel = 0;
 
   function traverse(curr, level) {
-    if (!curr) {
-      if (maxLevel < level) {
-        maxLevel = level;
-      }
-      return;
-    }
-
-    traverse(curr?.left, level + 1);
-    traverse(curr?.right, level + 1);
+     maxLevel = Math.max(level, maxLevel);
+    curr?.left && traverse(curr?.left, level + 1);
+    curr?.right && traverse(curr?.right, level + 1);
   }
 
   traverse(root, 0);
-  return maxLevel
+  return maxLevel+1;
 };
