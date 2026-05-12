@@ -40,24 +40,25 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElement = function (nums1, nums2) {
-  let resultArr = new Array(nums1.length).fill(-1);
-  let stack = [];
-  let result = {};
-  for (let i = 0; i < nums2.length; i++) {
-    while (stack.length && nums2[i] > nums2[stack[stack.length - 1]]) {
-      let indexVal = stack.pop();
-      result[nums2[indexVal]] = nums2[i];
+var nextGreaterElements = function (nums) {
+  const n = nums.length;
+  const ans = new Array(n).fill(-1);
+  const stack = [];
+
+  // run loop twice thats it so that ir can check
+  for (let i = 0; i < 2 * n; i++) {
+    const index = i % n;
+    const currentNumber = nums[index];
+
+    while (stack.length > 0 && currentNumber > nums[stack[stack.length - 1]]) {
+      const previousIndex = stack.pop();
+      ans[previousIndex] = currentNumber;
     }
 
-    stack.push(i);
-  }
-  for (let i = 0; i < nums1.length; i++) {
-    if (result[nums1[i]]) {
-      resultArr[i] = result[nums1[i]];
+    if (i < n) {
+      stack.push(index);
     }
   }
 
-  console.log(resultArr);
-  return resultArr;
+  return ans;
 };
