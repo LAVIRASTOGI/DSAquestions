@@ -19,19 +19,25 @@ var characterReplacement = function (s, k) {
   let mapData = new Map();
   let i = (j = 0);
   mapData.set(s[0], 1);
+  console.log(mapData);
   let maxWindow = 0;
   while (j < s.length) {
     if (validHandler(mapData, k)) {
       maxWindow = Math.max(maxWindow, j - i + 1);
       ++j;
-      let val = mapData.get(s[j]) || 0;
-      mapData.set(s[j], Number(val + 1));
+      if (j < s.length) {
+        let val = mapData.get(s[j]) || 0;
+        mapData.set(s[j], Number(val + 1));
+        console.log("here", mapData, s[j], j);
+      }
     } else {
       let val = Number(mapData.get(s[i]));
       mapData.set(s[i], Number(val) - 1);
       ++i;
+      console.log("false", mapData);
     }
   }
+  console.log(maxWindow);
   return maxWindow;
 };
 
@@ -46,4 +52,4 @@ function validHandler(mapData, k) {
   return validVal <= k;
 }
 
-characterReplacement("AABAABBA", 1);
+characterReplacement("AABAABB", 2);
