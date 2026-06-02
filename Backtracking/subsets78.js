@@ -20,7 +20,7 @@ var subsets = function (nums) {
   // path - conatins ans and start contains the next pointer
   let backtrack = (path, start) => {
     result.push([...path]);
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = start; i < nums.length; i++) {
       path.push(nums[i]);
       backtrack(path, i + 1);
       path.pop();
@@ -29,5 +29,8 @@ var subsets = function (nums) {
 
   backtrack([], 0);
 
+  console.log(result);
   return result;
 };
+
+subsets([1, 2, 3]);
