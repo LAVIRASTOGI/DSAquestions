@@ -131,42 +131,54 @@
 // console.log(f1(1, 2)(3));
 // console.log(f1(1)(4)(3));
 
-function reverse(str) {
-  let newStr = str.split("");
-  let l = 0;
-  let r = newStr.length - 1;
-  while (l <= r) {
-    let temp = newStr[l];
-    newStr[l] = newStr[r];
-    newStr[r] = temp;
-    l++;
-    r--;
-  }
+// function reverse(str) {
+//   let newStr = str.split("");
+//   let l = 0;
+//   let r = newStr.length - 1;
+//   while (l <= r) {
+//     let temp = newStr[l];
+//     newStr[l] = newStr[r];
+//     newStr[r] = temp;
+//     l++;
+//     r--;
+//   }
 
-  return newStr.join("");
-}
-function reverseWords(sentence) {
-  // Your implementation
-  let arr = sentence.split(" ");
-  let newStr = "";
-  for (let i = 0; i < arr.length; i++) {
-    newStr = newStr ? newStr + " " + reverse(arr[i]) : reverse(arr[i]);
+//   return newStr.join("");
+// }
+// function reverseWords(sentence) {
+//   // Your implementation
+//   let arr = sentence.split(" ");
+//   let newStr = "";
+//   for (let i = 0; i < arr.length; i++) {
+//     newStr = newStr ? newStr + " " + reverse(arr[i]) : reverse(arr[i]);
+//   }
+//   return newStr;
+// }
+
+// function reverseWords(sentence) {
+//   // Your implementation
+//   // Your implementation
+
+//   // preserve space
+//   let arr = sentence.split(/(\s+)/);
+//   let newStr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i]) {
+//       newStr[i] = arr[i].split("").reverse().join("");
+//     }
+//   }
+//   console.log(newStr);
+//   return newStr.join("");
+// }
+
+function xy(arr, k) {
+  let i = 1;
+  while (i <= k) {
+    let val = arr.pop();
+    arr.unshift(val);
+    i++;
   }
-  return newStr;
+  console.log(arr);
 }
 
-function reverseWords(sentence) {
-  // Your implementation
-  // Your implementation
-
-  // preserve space
-  let arr = sentence.split(/(\s+)/);
-  let newStr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i]) {
-      newStr[i] = arr[i].split("").reverse().join("");
-    }
-  }
-  console.log(newStr);
-  return newStr.join("");
-}
+xy([1, 2, 3, 4, 5], 2);
