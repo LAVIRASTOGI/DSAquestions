@@ -171,14 +171,50 @@
 //   return newStr.join("");
 // }
 
-function xy(arr, k) {
-  let i = 1;
-  while (i <= k) {
-    let val = arr.pop();
-    arr.unshift(val);
-    i++;
-  }
-  console.log(arr);
+// function xy(arr, k) {
+//   let i = 1;
+//   while (i <= k) {
+//     let val = arr.pop();
+//     arr.unshift(val);
+//     i++;
+//   }
+//   console.log(arr);
+// }
+
+// xy([1, 2, 3, 4, 5], 2);
+
+let arr = [
+  { id: 1, val: 20 },
+  { id: 2, val: 25 },
+  { id: 3, val: 2 },
+  { id: 1, val: 4 },
+  { id: 2, val: 6 },
+];
+
+function op(arr) {
+  let newObj = arr.reduce((acc, curr) => {
+    if (!acc[curr.id]) {
+      return {
+        ...acc,
+        [curr.id]: {
+          id: curr.id,
+          val: curr.val,
+        },
+      };
+    } else {
+      return {
+        ...acc,
+        [curr.id]: {
+          id: curr.id,
+          val: acc[curr.id].val + curr.val,
+        },
+      };
+    }
+  }, {});
+
+  console.log(Object.values(newObj));
 }
 
-xy([1, 2, 3, 4, 5], 2);
+op(arr);
+
+
