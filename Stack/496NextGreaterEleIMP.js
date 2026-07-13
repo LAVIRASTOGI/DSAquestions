@@ -40,25 +40,30 @@
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElements = function (nums) {
-  const n = nums.length;
-  const ans = new Array(n).fill(-1);
+function nextGreaterElement(arr) {
+  const n = arr.length;
+  const result = new Array(n).fill(-1);
   const stack = [];
 
-  // run loop twice thats it so that ir can check
-  for (let i = 0; i < 2 * n; i++) {
-    const index = i % n;
-    const currentNumber = nums[index];
-
-    while (stack.length > 0 && currentNumber > nums[stack[stack.length - 1]]) {
-      const previousIndex = stack.pop();
-      ans[previousIndex] = currentNumber;
+  // Start from the right side
+  for (let i = n - 1; i >= 0; i--) {
+    // Remove all elements that are smaller than
+    // or equal to the current element
+    while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+      stack.pop();
     }
 
-    if (i < n) {
-      stack.push(index);
+    // Top element is the next greater element
+    if (stack.length > 0) {
+      result[i] = stack[stack.length - 1];
     }
+
+    // Add current element for elements on its left
+    stack.push(arr[i]);
   }
 
-  return ans;
-};
+  return result;
+}
+
+console.log(nextGreaterElement([4, 5, 2, 10, 8]));
+// [5, 10, 10, -1, -1]
