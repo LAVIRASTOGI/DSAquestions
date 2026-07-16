@@ -15,8 +15,8 @@ var deleteDuplicates = function(head) {
     if (list.next.val === list.val) {
       list.next = list.next.next;
     } else {
-      list = list?.next;
-    }
+        list = list?.next;
+      }
   }
 
   return head
